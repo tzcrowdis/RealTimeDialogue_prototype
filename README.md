@@ -7,13 +7,9 @@ Script is designed to be placed on every text object so that all creative work c
 
 
 Future Directions:
-
 consequence management system DONE?
-
 handle player spamming input
-
 better way to check current than in update?
-
 develop simple demo level
 
 
