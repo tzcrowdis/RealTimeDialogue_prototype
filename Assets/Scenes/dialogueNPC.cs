@@ -25,9 +25,9 @@ public class dialogueNPC : MonoBehaviour
     [Header("Will this trigger an event? If so what's the name?")]
     public bool consequence;
     public string consName;
-    consequenceManager cons;
+    consequenceTracker cons;
 
-    [Header("Player Attribute")]
+    [Header("Player Attribute (no need to set)")]
     public Transform player;
 
     TextMeshProUGUI text;
@@ -49,7 +49,7 @@ public class dialogueNPC : MonoBehaviour
     {
         text = gameObject.GetComponent<TextMeshProUGUI>();
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0f); //start with invisible text
-        cons = GameObject.Find("Actions Overlay").GetComponent<consequenceManager>();
+        cons = GameObject.Find("Actions Overlay").GetComponent<consequenceTracker>();
         player = GameObject.Find("FirstPersonController").transform;
         if (!startTrigger)
         {
@@ -69,15 +69,11 @@ public class dialogueNPC : MonoBehaviour
 
                 if (consequence)
                 {
-                    for (int i = 0; i < cons.numEvents; i++)
-                    {
-                        if (consName.Equals(cons.eventNames[i])) { consIndex = i; }
-                    }
+                    consIndex = cons.findEventIndex(consName);
                     consequence = false;
 
-                    //notify if typo
+                    //if no typo
                     if (consIndex > -1){ cons.eventStatus[consIndex] = true; }
-                    else{ Debug.LogFormat("Consequence name, {0}, not found.", consName); }
                 }
             }
 

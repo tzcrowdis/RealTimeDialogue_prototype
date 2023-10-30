@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class consequenceManager : MonoBehaviour
+public class consequenceTracker : MonoBehaviour
 {
     //up to designer to keep vars consistent
     [Header("Input Events")]
@@ -44,5 +44,21 @@ public class consequenceManager : MonoBehaviour
             writer.WriteLine("{0}={1}", eventNames[i], eventStatus[i]);
         }
         writer.Close();
+    }
+
+    //returns the index of the event given its name
+    //index is -1 if not found
+    public int findEventIndex(string name)
+    {
+        int consIndex = -1;
+        for (int i = 0; i < numEvents; i++)
+        {
+            if (name.Equals(eventNames[i])) { consIndex = i; }
+        }
+
+        //notify if typo
+        if (consIndex == -1) { Debug.LogFormat("Consequence name, {0}, not found.", name); }
+
+        return consIndex;
     }
 }
