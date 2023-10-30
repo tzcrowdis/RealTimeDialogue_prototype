@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,9 +6,11 @@ using TMPro;
 public class dialogueNPC : MonoBehaviour
 {
     //many of these vars are public to reduce dev time in scripts
+    [Header("Speech Attributes")]
     public float speechTime;
     public float waitTime;
 
+    [Header("Next Dialogue")]
     public dialogueNPC who;
     public dialogueNPC what;
     public dialogueNPC when;
@@ -16,15 +18,16 @@ public class dialogueNPC : MonoBehaviour
     public dialogueNPC why;
     public dialogueNPC waited;
 
+    [Header("Dialogue Status")]
     public bool current;
     public bool startTrigger;
 
-    public bool initialTestVar;
-    public bool finalTestVar;
-
+    [Header("Will this trigger an event? If so what's the name?")]
     public bool consequence;
     public string consName;
     consequenceManager cons;
+
+    [Header("Player Attribute")]
     public Transform player;
 
     TextMeshProUGUI text;
@@ -47,14 +50,10 @@ public class dialogueNPC : MonoBehaviour
         text = gameObject.GetComponent<TextMeshProUGUI>();
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0f); //start with invisible text
         cons = GameObject.Find("Actions Overlay").GetComponent<consequenceManager>();
-        player = GameObject.Find("Main Camera").transform;
+        player = GameObject.Find("FirstPersonController").transform;
         if (!startTrigger)
         {
             current = false;
-        }
-        if (initialTestVar)
-        {
-            current = true;
         }
     }
 
@@ -77,7 +76,7 @@ public class dialogueNPC : MonoBehaviour
                     consequence = false;
 
                     //notify if typo
-                    if (consIndex != default(int)){ cons.eventStatus[consIndex] = true; } 
+                    if (consIndex > -1){ cons.eventStatus[consIndex] = true; }
                     else{ Debug.LogFormat("Consequence name, {0}, not found.", consName); }
                 }
             }
@@ -85,7 +84,7 @@ public class dialogueNPC : MonoBehaviour
             //react to user questions
             if (Input.GetKeyDown("1")) //who
             {
-                who.current = true;
+                if (who != null) { who.current = true; }
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
                 current = false;
 
@@ -93,7 +92,7 @@ public class dialogueNPC : MonoBehaviour
             }
             else if (Input.GetKeyDown("2")) //what
             {
-                what.current = true;
+                if (what != null) { what.current = true; }
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
                 current = false;
 
@@ -101,7 +100,7 @@ public class dialogueNPC : MonoBehaviour
             }
             else if (Input.GetKeyDown("3")) //when
             {
-                when.current = true;
+                if (when != null) { when.current = true; }
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
                 current = false;
 
@@ -109,7 +108,7 @@ public class dialogueNPC : MonoBehaviour
             }
             else if (Input.GetKeyDown("4")) //where
             {
-                where.current = true;
+                if (where != null) { where.current = true; }
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
                 current = false;
 
@@ -117,7 +116,7 @@ public class dialogueNPC : MonoBehaviour
             }
             else if (Input.GetKeyDown("5")) //why
             {
-                why.current = true;
+                if (why != null) { why.current = true; }
                 text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
                 current = false;
 
@@ -136,7 +135,7 @@ public class dialogueNPC : MonoBehaviour
                 }
                 else
                 {
-                    waited.current = true;
+                    if (waited != null) { waited.current = true; }
                 }
             }
             currentTime += Time.deltaTime;

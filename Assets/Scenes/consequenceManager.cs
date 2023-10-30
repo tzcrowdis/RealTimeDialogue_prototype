@@ -6,14 +6,19 @@ using System.IO;
 public class consequenceManager : MonoBehaviour
 {
     //up to designer to keep vars consistent
+    [Header("Input Events")]
     public int numEvents;
     public string[] eventNames;
     public bool[] eventStatus;
+
+    [Header("Designate Event File Location")]
+    public string path;
     //NOTE: ASSUMES ORDER OF EVENT NAMES ALIGNS WITH EVENT STATUS
 
     //read game event status' from file
     void Start()
     {
+        Save();
         //catch array mismatch
         if (eventNames.Length != eventStatus.Length) 
         { 
@@ -21,7 +26,6 @@ public class consequenceManager : MonoBehaviour
         }
         
         string[] line;
-        string path = "Assets/Scenes/gameEvents.txt";
         StreamReader reader = new StreamReader(path);
         for (int i = 0; i < numEvents; i++)
         {
@@ -34,11 +38,10 @@ public class consequenceManager : MonoBehaviour
     //write current state of game events status' to file
     public void Save()
     {
-        string path = "Assets/Scenes/gameEvents.txt";
-        StreamWriter writer = new StreamWriter(path, true);
+        StreamWriter writer = new StreamWriter(path, false);
         for (int i = 0; i < numEvents; i++)
         {
-            writer.WriteLine("{0}={1}", eventNames, eventStatus);
+            writer.WriteLine("{0}={1}", eventNames[i], eventStatus[i]);
         }
         writer.Close();
     }
