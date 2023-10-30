@@ -13,6 +13,6 @@ Script is designed to be placed on each text object so that all creative work ca
 - better way to check current than in update?
 - finish demo level
 
-
-Developed in Unity version 2021.3.1f1
-Modular FPS Controller: https://assetstore.unity.com/packages/3d/characters/modular-first-person-controller-189884
+### Misc
+- Developed in Unity version 2021.3.1f1
+- Modular FPS Controller: https://assetstore.unity.com/packages/3d/characters/modular-first-person-controller-189884
