@@ -6,11 +6,11 @@ This prototype boils down dialogue tree splits into just 5/6 questions (who, wha
 Script is designed to be placed on every text object so that all creative work can be done in the unity editor.
 
 
-##Future Directions:
--consequence management system DONE?
--handle player spamming input
--better way to check current than in update?
--develop simple demo level
+## Future Directions:
+- consequence management system DONE?
+- handle player spamming input
+- better way to check current than in update?
+- develop simple demo level
 
 
 Developed in Unity version 2021.3.1f1
