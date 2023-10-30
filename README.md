@@ -7,8 +7,7 @@ The demo folder contains a scene demonstrating the capabilities of this system.
 Script is designed to be placed on each text object so that all creative work can be done in the unity editor.
 
 
-## Future Directions:
-- fix jagged text orientation
+## To Do:
 - handle player spamming input
 - better way to check current than in update?
 - finish demo level
