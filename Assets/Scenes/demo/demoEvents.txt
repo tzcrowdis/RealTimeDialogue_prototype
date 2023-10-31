@@ -1,1 +1,2 @@
 firstNPC1=False
+firstNPC2=False
