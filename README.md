@@ -6,6 +6,9 @@ The demo folder contains a scene demonstrating the capabilities of this system. 
 
 The dialogueNPC script is designed to be placed on each text object so that all creative work can be done in the unity editor. The consequence scripts are designed to be placed on the overlay.
 
+## Demo Video
+
+https://github.com/tzcrowdis/RealTimeDialogue_prototype/assets/100492586/4dd3625c-5b30-49a7-ae64-2f43e23727d6
 
 ## To Do:
 - handle player spamming input
